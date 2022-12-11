@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование товара</title>>
+    <link th:href="@{/css/all.min.css}" rel="stylesheet">                              <!-- https://fontawesome.com/-->
+    <link th:href="@{/css/magnific-popup.css}" type="text/css" rel="stylesheet">       <!-- https://dimsemenov.com/plugins/magnific-popup/ -->
+    <link th:href="@{/img/bootstrap.min.css}" type="text/css" rel="stylesheet">        <!-- https://getbootstrap.com/ -->
+    <link th:href="@{/slick/slick.min.css}" type="text/css" rel="stylesheet">          <!-- https://kenwheeler.github.io/slick/ -->
+    <link th:href="@{/slick/slick-theme.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/css/templatemo-upright.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Leftside bar -->
+        <div th:id="tm-sidebar" class="tm-sidebar">
+            <nav class="tm-nav">
+                <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i></button>
+                <div style="background-color: #102050">
+                    <div class="tm-brand-box">
+                        <h1 class="tm-brand">MINECRAFT<br>Spring E-shop</h1>
+                    </div>
+                    <ul th:id="tm-main-nav">
+                        <li class="nav-item">
+                            <div class="triangle-right"></div>
+                            <div class="nav-link"><a href="#home" th:href="@{/admin}">Профиль</a></div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="triangle-right"></div>
+                            <div class="nav-link"><a href="#gallery" th:href="@{/products}">Магазин</a></div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="triangle-right"></div>
+                            <div class="nav-link"><a th:href="@{/cart}">Корзина</a></div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="triangle-right"></div>
+                            <div class="nav-link"><a th:href="@{/logout}">Выйти</a></div>
+                        </li>
+                    </ul>
+                </div>
+                <footer class="mb-3 tm-mt-200">
+                    Привет, Админ! <br> &nbsp;
+                </footer>
+            </nav>
+        </div>
+
+        <div class="tm-main">
+            <!-- Home section -->
+            <div class="tm-section-wrap">
+                <div class="tm-parallax" data-parallax="scroll" data-image-src="/img/img-01.jpg"></div>
+                <section id="home" class="tm-section">
+                    <h2 class="tm-text-primary">Форма редактирования данных о товаре</h2>
+                    <hr class="mb-5">
+                    <div class="row">
+                        <div class="col-lg-6 tm-col-home mb-4">
+                            <div class="tm-text-container">
+                                <div class="tm-text-container"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 tm-col-home mb-4">
+                            <div class="tm-text-container" style="justify-items: stretch">
+                                <p> <form method="post" th:action="@{/index}">
+                                <input type="submit" value="Вернуться в кабинет"></form> </p>
+                                <form th:method="POST" th:action="@{/admin/product/edit/{id}(id=${editProduct.getId()})}" th:object="${editProduct}">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="title">Наименование товара: </label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" th:field="*{title}" placeholder="Наименование" id="title">
+                                                <div style="color: crimson" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+                                            </div><br>
+                                        </div><div class="row">
+                                        <div class="col">
+                                            <label for="description">Описание товара: </label>
+                                        </div>
+                                        <div class="col">
+                                            <textarea th:field="*{description}" placeholder="Описание" id="description"></textarea>
+                                            <div style="color: crimson" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+                                        </div><br>
+                                    </div><div class="row">
+                                        <div class="col">
+                                            <label for="price">Цена товара: </label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="number" th:field="*{price}" min="1" step="0.00" id="price">
+                                            <div style="color: crimson" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+                                        </div><br>
+                                    </div><div class="row">
+                                        <div class="col">
+                                            <label for="warehouse">Информация о складе: </label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" th:field="*{warehouse}" placeholder="Склад" id="warehouse">
+                                            <div style="color: crimson" th:if="${#fields.hasErrors('warehouse')}" th:errors="*{warehouse}"></div>
+                                        </div><br>
+                                    </div><div class="row">
+                                        <div class="col">
+                                            <label for="category">Категория товара: </label>
+                                        </div>
+                                        <div class="col">
+                                            <select name="category" th:field="*{category}" id="category">
+                                                <div th:each="element : ${category}">
+                                                    <option th:text="${element.getName()}" th:value="${element.getId()}"></option>
+                                                </div></select>
+                                        </div><br>
+                                    </div><div class="row">
+                                        <div class="col">
+                                            <label for="seller">Данные о продавце: </label>
+                                        </div>
+                                        <div class="col">
+                                            <textarea th:field="*{seller}" placeholder="Продавец" id="seller"></textarea>
+                                            <div style="color: crimson" th:if="${#fields.hasErrors('seller')}" th:errors="*{seller}"></div>
+                                        </div>
+                                    </div><div class="row">
+                                        <div class="col">
+                                            <input type="submit" value="Редактировать">
+                                        </div>
+                                        <div class="col"> &nbsp; </div>
+                                    </div>
+                                    </div>
+                                </form>
+                                <div class="text-right"><br><br></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Contact section -->
+            <div class="tm-section-wrap">
+                <div class="tm-parallax" data-parallax="scroll" data-image-src="/img/img-04.jpg"></div>
+                <div th:id="contact" class="tm-section">
+                    <h2 class="tm-text-primary">Contact Us</h2>
+                    <hr class="mb-5">
+                    <div class="row" style="color: #0056b3">
+                        <div class="col-xl-6 tm-contact-col-l mb-4"></div>
+                        <div class="col-xl-6 tm-contact-col-r">
+                            <!-- Map -->
+                            <div class="mapouter mb-4">
+                                <div class="gmap_canvas"></div>
+                            </div>
+                            <!-- Address -->
+                            <address class="mb-4">
+                                184530,- Murmansk reg.,<br>Olenegorsk city<br>Pionerskaya, 8-5
+                            </address>
+                            <!-- Links -->
+                            <ul class="tm-contact-links mb-4">
+                                <li class="mb-2">
+                                    <a th:href="@{tel:8921XXXXXXX}">
+                                        <i class="fas fa-phone mr-2 tm-contact-link-icon"></i>
+                                        Tel: +7(921)XXX-XX-XX
+                                    </a>
+                                </li>
+                                <li>
+                                    <a th:href="@{mailto:mail.ru}">
+                                        <i class="fas fa-at mr-2 tm-contact-link-icon"></i>
+                                        Email: avgriffon@mail.ru
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="tm-contact-social">
+                                <li><a th:href="@{www.fb.com/templatemo}" class="tm-social-link"><i class="fab fa-facebook"></i></a></li>
+                                <li><a th:href="@{www.twitter.com}" class="tm-social-link"><i class="fab fa-twitter"></i></a></li>
+                                <li><a th:href="@{www.instagram.com}" class="tm-social-link"><i class="fab fa-instagram"></i></a></li>
+                                <li><a th:href="@{www.youtube.com}" class="tm-social-link"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tm-section-wrap tm-copyright row">
+                <div class="col-12">
+                    <div class="text-right"> Copyright 2022 -=> Saintanic </div>
+                </div>
+            </div>
+        </div> <!-- main -->
+    </div>
+</div>
+<script th:src="@{/js/jquery-3.4.1.min.js}"></script>          <!-- https://jquery.com/ -->
+<script th:src="@{/js/jquery.singlePageNav.min.js}"></script>  <!-- https://github.com/ChrisWojcik/single-page-nav -->
+<script th:src="@{/js/parallax/parallax.min.js}"></script>     <!-- https://pixelcog.github.io/parallax.js/ -->
+<script th:src="@{/js/imagesloaded.pkgd.min.js}"></script>     <!-- https://imagesloaded.desandro.com/ -->
+<script th:src="@{/js/isotope.pkgd.min.js}"></script>          <!-- https://isotope.metafizzy.co/ -->
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script> <!-- https://dimsemenov.com/plugins/magnific-popup/ -->
+<script th:src="@{/slick/slick.min.js}"></script>              <!-- https://kenwheeler.github.io/slick/ -->
+<script th:src="@{/js/templatemo-script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация</title>>
+  <link th:href="@{/css/magnific-popup.css}" type="text/css" rel="stylesheet">       <!-- https://dimsemenov.com/plugins/magnific-popup/ -->
+  <link th:href="@{/img/bootstrap.min.css}" type="text/css" rel="stylesheet">        <!-- https://getbootstrap.com/ -->
+  <link th:href="@{/slick/slick.min.css}" type="text/css" rel="stylesheet">          <!-- https://kenwheeler.github.io/slick/ -->
+  <link th:href="@{/slick/slick-theme.css}" type="text/css" rel="stylesheet">
+  <link th:href="@{/css/templatemo-upright.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <!-- Leftside bar -->
+    <div id="tm-sidebar" class="tm-sidebar">
+      <nav class="tm-nav">
+        <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i></button>
+        <div style="background-color: #102050">
+          <div class="tm-brand-box">
+            <h1 class="tm-brand">MINECRAFT<br>Spring E-shop</h1>
+          </div>
+          <ul align="right" id="tm-main-nav">
+            <li class="nav-item">
+              <div class="nav-link"><div><a th:href="@{/auth/login}">Авторизация&nbsp;&nbsp;&nbsp;&nbsp;</a></div></div>
+            </li>
+            <li class="nav-item">
+              <div class="nav-link"><div><a th:href="@{/product}">Магазин&nbsp;&nbsp;&nbsp;&nbsp;</a></div></div>
+            </li>
+          </ul>
+        </div>
+        <footer class="mb-3 tm-mt-200">
+          Привет, Незнакомец! <br> &nbsp;
+        </footer>
+      </nav>
+    </div>
+    <div class="tm-main">
+      <!-- Home section -->
+      <div class="tm-section-wrap">
+        <div class="tm-parallax" data-parallax="scroll" data-image-src="/img/img-01.jpg"></div>
+        <section id="home" class="tm-section">
+          <h2 class="tm-text-primary">Регистрация</h2>
+          <hr class="mb-5">
+          <div class="row">
+            <div class="col-lg-6 tm-col-home mb-4">
+              <div class="tm-text-container">
+                <form method="POST" th:action="@{/auth/registration}" th:object="${person}">
+                  <label for="login">Введите логин: </label><br>
+                  <input style="width: 300px" type="text" th:field="*{login}" placeholder="Введите логин" name="username" id="login">
+                  <div style="color: crimson" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
+                  <br>
+                  <label for="password">Введите пароль: </label><br>
+                  <input style="width: 300px" type="password" th:field="*{password}" placeholder="Введите пароль" name="password" id="password">
+                  <div style="color: crimson" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                  <br><br>
+                  <input type="submit" value="Зарегистрироваться">
+                </form><br><br><br>
+                <a href="/auth/login">Авторизация</a><br>
+                <p><a href="/product">Поиск товаров</a> </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="tm-section-wrap tm-copyright row">
+        <div class="col-12">
+          <div class="text-right"> Copyright 2022 -=> Saintanic </div>
+        </div>
+      </div>
+    </div> <!-- main -->
+  </div>
+</div>
+<script th:src="@{/js/jquery-3.4.1.min.js}"></script>          <!-- https://jquery.com/ -->
+<script th:src="@{/js/jquery.singlePageNav.min.js}"></script>  <!-- https://github.com/ChrisWojcik/single-page-nav -->
+<script th:src="@{/js/parallax/parallax.min.js}"></script>     <!-- https://pixelcog.github.io/parallax.js/ -->
+<script th:src="@{/js/imagesloaded.pkgd.min.js}"></script>     <!-- https://imagesloaded.desandro.com/ -->
+<script th:src="@{/js/isotope.pkgd.min.js}"></script>          <!-- https://isotope.metafizzy.co/ -->
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script> <!-- https://dimsemenov.com/plugins/magnific-popup/ -->
+<script th:src="@{/slick/slick.min.js}"></script>              <!-- https://kenwheeler.github.io/slick/ -->
+<script th:src="@{/js/templatemo-script.js}"></script>
+</body>
+</html>

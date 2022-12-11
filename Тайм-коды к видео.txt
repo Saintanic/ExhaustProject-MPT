@@ -1,0 +1,70 @@
+Тайм-коды к видео:
+00.00 - Работа в кабинете админа
+02.00 - Проверка валидации при добавлении товаров
+02.30 - Поиск и сортировка
+04.00 - Создание и просмотр заказов
+04.40 - Работа в кабинете пользователя
+05.30 - Проверка запрета перехода пользователя под админа
+05.40 - Работа незарегистрированного пользователя
+06.30 - Регистрация нового пользователя с проверкой валидации корректности пароля
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Used technologies:
+
+Java.version 17
+BACK-END
+Spring-Framework
+Dependencies:
+    spring.boot
+    spring-boot-maven-plugin
+    postgresql
+    spring-web
+    spring-thymeleaf
+    thymeleaf-springsecurity5
+    spring-validation
+    spring-security
+    spring-test
+    spring-security-test
+FRONT-END
+Bootstrap, HTML5, CSS, JavaScript
+
+
+В прикрепленном файле требования и критерии к итоговой аттестации.
+К данному заданию необходимо прикрепить:
+- видеоролик с демонстрацией,
+- проект в виде архива,
+- скрипт БД,
+- презентацию.
+
+Необходимо также прикрепить ссылку на git,
+в котором будут все вышеперечисленные файлы 
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
